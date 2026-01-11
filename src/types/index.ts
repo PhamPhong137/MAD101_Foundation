@@ -1,0 +1,42 @@
+export interface Chapter {
+  id: string;
+  number: number;
+  title: string;
+  titleVi: string;
+  description: string;
+  icon: string;
+  color: string;
+  topics: Topic[];
+}
+
+export interface Topic {
+  id: string;
+  title: string;
+  content: ContentBlock[];
+}
+
+export interface ContentBlock {
+  type: 'text' | 'formula' | 'table' | 'note' | 'theorem' | 'example' | 'list';
+  content: string | string[] | TableData;
+  title?: string;
+}
+
+export interface TableData {
+  headers: string[];
+  rows: string[][];
+}
+
+export interface NavItem {
+  label: string;
+  path: string;
+  icon?: string;
+}
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+  chapter: string;
+}

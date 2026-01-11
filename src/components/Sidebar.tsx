@@ -10,13 +10,17 @@ import {
     Brain,
     ChevronLeft,
     ChevronRight,
-    Sparkles
+    Sparkles,
+    Sun,
+    Moon
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const location = useLocation();
+    const { theme, toggleTheme } = useTheme();
 
     const navItems = [
         { path: '/', label: 'Trang chủ', icon: Home },
@@ -29,25 +33,34 @@ const Sidebar = () => {
     return (
         <>
             {/* Mobile Header */}
-            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 h-16 bg-dark-900/90 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-4">
+            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 h-16 bg-white/90 dark:bg-dark-900/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 flex items-center justify-between px-4 transition-colors duration-300">
                 <Link to="/" className="flex items-center space-x-3">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
                         <span className="text-white font-bold text-lg">M</span>
                     </div>
                     <span className="text-xl font-bold gradient-text font-display">MAD101</span>
                 </Link>
-                <button
-                    onClick={() => setIsMobileOpen(!isMobileOpen)}
-                    className="p-2 rounded-xl bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all"
-                >
-                    {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                </button>
+                <div className="flex items-center space-x-2">
+                    {/* Theme Toggle - Mobile */}
+                    <button
+                        onClick={toggleTheme}
+                        className="p-2 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
+                    >
+                        {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                    </button>
+                    <button
+                        onClick={() => setIsMobileOpen(!isMobileOpen)}
+                        className="p-2 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
+                    >
+                        {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Overlay */}
             {isMobileOpen && (
                 <div
-                    className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+                    className="lg:hidden fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm z-40"
                     onClick={() => setIsMobileOpen(false)}
                 />
             )}
@@ -55,7 +68,7 @@ const Sidebar = () => {
             {/* Sidebar */}
             <aside
                 className={`
-          fixed top-0 left-0 z-50 h-screen bg-dark-900/95 backdrop-blur-xl border-r border-white/5
+          fixed top-0 left-0 z-50 h-screen bg-white/95 dark:bg-dark-900/95 backdrop-blur-xl border-r border-gray-200 dark:border-white/5
           transition-all duration-300 ease-in-out
           lg:translate-x-0
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
@@ -63,7 +76,7 @@ const Sidebar = () => {
         `}
             >
                 {/* Sidebar Header */}
-                <div className={`h-20 flex items-center border-b border-white/5 ${isCollapsed ? 'justify-center px-2' : 'justify-between px-6'}`}>
+                <div className={`h-20 flex items-center border-b border-gray-200 dark:border-white/5 ${isCollapsed ? 'justify-center px-2' : 'justify-between px-6'}`}>
                     <Link to="/" className="flex items-center space-x-3" onClick={() => setIsMobileOpen(false)}>
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                             <span className="text-white font-bold text-lg">M</span>
@@ -71,7 +84,7 @@ const Sidebar = () => {
                         {!isCollapsed && (
                             <div className="overflow-hidden">
                                 <span className="text-xl font-bold gradient-text font-display whitespace-nowrap">MAD101</span>
-                                <p className="text-xs text-gray-500 whitespace-nowrap">Discrete Mathematics</p>
+                                <p className="text-xs text-gray-500 dark:text-gray-500 whitespace-nowrap">Discrete Mathematics</p>
                             </div>
                         )}
                     </Link>
@@ -80,7 +93,7 @@ const Sidebar = () => {
                 {/* Collapse Button - Desktop only */}
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="hidden lg:flex absolute -right-3 top-24 w-6 h-6 rounded-full bg-dark-800 border border-white/10 items-center justify-center text-gray-400 hover:text-white hover:bg-dark-700 transition-all"
+                    className="hidden lg:flex absolute -right-3 top-24 w-6 h-6 rounded-full bg-white dark:bg-dark-800 border border-gray-200 dark:border-white/10 items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-700 transition-all shadow-sm"
                 >
                     {isCollapsed ? (
                         <ChevronRight className="w-4 h-4" />
@@ -92,7 +105,7 @@ const Sidebar = () => {
                 {/* Navigation */}
                 <nav className="p-4 space-y-2">
                     {!isCollapsed && (
-                        <div className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        <div className="px-3 py-2 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
                             Menu
                         </div>
                     )}
@@ -107,33 +120,56 @@ const Sidebar = () => {
                                 className={`
                   flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group
                   ${isActive
-                                        ? 'bg-gradient-to-r from-primary-500/20 to-secondary-500/20 text-white border border-primary-500/30'
-                                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                        ? 'bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-primary-700 dark:text-white border border-primary-200 dark:border-primary-500/30'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
                                     }
                   ${isCollapsed ? 'justify-center' : ''}
                 `}
                                 title={isCollapsed ? item.label : undefined}
                             >
-                                <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-primary-400' : 'group-hover:text-primary-400'} transition-colors`} />
+                                <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-primary-600 dark:text-primary-400' : 'group-hover:text-primary-600 dark:group-hover:text-primary-400'} transition-colors`} />
                                 {!isCollapsed && (
                                     <span className="font-medium">{item.label}</span>
                                 )}
                                 {isActive && !isCollapsed && (
-                                    <Sparkles className="w-4 h-4 ml-auto text-primary-400" />
+                                    <Sparkles className="w-4 h-4 ml-auto text-primary-500 dark:text-primary-400" />
                                 )}
                             </Link>
                         );
                     })}
                 </nav>
 
+                {/* Theme Toggle - Desktop */}
+                <div className={`px-4 py-3 ${isCollapsed ? 'flex justify-center' : ''}`}>
+                    <button
+                        onClick={toggleTheme}
+                        className={`
+              flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300
+              bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 
+              hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white
+              ${isCollapsed ? 'w-auto' : 'w-full'}
+            `}
+                        title={isCollapsed ? (theme === 'dark' ? 'Light Mode' : 'Dark Mode') : undefined}
+                    >
+                        {theme === 'dark' ? (
+                            <Sun className="w-5 h-5 text-yellow-500" />
+                        ) : (
+                            <Moon className="w-5 h-5 text-primary-600" />
+                        )}
+                        {!isCollapsed && (
+                            <span className="font-medium">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+                        )}
+                    </button>
+                </div>
+
                 {/* Bottom Section */}
                 {!isCollapsed && (
-                    <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/5">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-white/5">
                         <div className="glass-card p-4 text-center">
                             <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center">
-                                <Brain className="w-6 h-6 text-primary-400" />
+                                <Brain className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                             </div>
-                            <h4 className="text-sm font-semibold text-white mb-1">Luyện tập ngay!</h4>
+                            <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-1">Luyện tập ngay!</h4>
                             <p className="text-xs text-gray-500 mb-3">Kiểm tra kiến thức của bạn</p>
                             <Link
                                 to="/quiz"

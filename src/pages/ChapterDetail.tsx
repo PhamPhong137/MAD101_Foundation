@@ -13,8 +13,8 @@ const ChapterDetail = () => {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-4xl font-bold text-white mb-4">404</h1>
-                    <p className="text-gray-400 mb-6">Không tìm thấy chương này</p>
+                    <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
+                    <p className="text-gray-600 dark:text-gray-400 mb-6">Không tìm thấy chương này</p>
                     <Link to="/chapters" className="btn-primary">
                         Quay lại danh sách
                     </Link>
@@ -47,12 +47,12 @@ const ChapterDetail = () => {
         <div className="min-h-screen py-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Breadcrumb */}
-                <div className="flex items-center space-x-2 text-sm text-gray-400 mb-8">
-                    <Link to="/" className="hover:text-white transition-colors">Trang chủ</Link>
+                <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-8">
+                    <Link to="/" className="hover:text-gray-900 dark:hover:text-white transition-colors">Trang chủ</Link>
                     <span>/</span>
-                    <Link to="/chapters" className="hover:text-white transition-colors">Các chương</Link>
+                    <Link to="/chapters" className="hover:text-gray-900 dark:hover:text-white transition-colors">Các chương</Link>
                     <span>/</span>
-                    <span className="text-white">Chapter {chapter.number}</span>
+                    <span className="text-gray-900 dark:text-white">Chapter {chapter.number}</span>
                 </div>
 
                 {/* Chapter Header */}
@@ -62,9 +62,9 @@ const ChapterDetail = () => {
                             {chapter.icon}
                         </div>
                         <div className="flex-1">
-                            <span className="text-sm text-gray-400 font-mono">Chapter {chapter.number}</span>
-                            <h1 className="text-3xl sm:text-4xl font-bold text-white mt-1 mb-2">{chapter.title}</h1>
-                            <p className="text-xl text-gray-400 mb-4">{chapter.titleVi}</p>
+                            <span className="text-sm text-gray-500 dark:text-gray-400 font-mono">Chapter {chapter.number}</span>
+                            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mt-1 mb-2">{chapter.title}</h1>
+                            <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">{chapter.titleVi}</p>
                             <p className="text-gray-500">{chapter.description}</p>
                         </div>
                     </div>
@@ -74,19 +74,19 @@ const ChapterDetail = () => {
                 <div className="glass-card p-4 mb-8">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                            <BookMarked className="w-5 h-5 text-primary-400" />
-                            <span className="text-white font-medium">{chapter.topics.length} Chủ đề</span>
+                            <BookMarked className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                            <span className="text-gray-900 dark:text-white font-medium">{chapter.topics.length} Chủ đề</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <button
                                 onClick={expandAll}
-                                className="px-3 py-1 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                className="px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-all"
                             >
                                 Mở tất cả
                             </button>
                             <button
                                 onClick={collapseAll}
-                                className="px-3 py-1 text-sm text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                                className="px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg transition-all"
                             >
                                 Đóng tất cả
                             </button>
@@ -104,23 +104,23 @@ const ChapterDetail = () => {
                         >
                             <button
                                 onClick={() => toggleTopic(topic.id)}
-                                className="w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors"
+                                className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                             >
                                 <div className="flex items-center space-x-4">
-                                    <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center text-sm font-mono text-primary-400">
+                                    <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center text-sm font-mono text-primary-700 dark:text-primary-400">
                                         {index + 1}
                                     </span>
-                                    <h3 className="text-lg font-semibold text-white">{topic.title}</h3>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{topic.title}</h3>
                                 </div>
                                 {expandedTopics.includes(topic.id) ? (
-                                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                                    <ChevronUp className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                                 ) : (
-                                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                                    <ChevronDown className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                                 )}
                             </button>
 
                             {expandedTopics.includes(topic.id) && (
-                                <div className="px-6 pb-6 border-t border-white/5 pt-4">
+                                <div className="px-6 pb-6 border-t border-gray-200 dark:border-white/5 pt-4">
                                     <ContentRenderer content={topic.content} />
                                 </div>
                             )}
@@ -129,11 +129,11 @@ const ChapterDetail = () => {
                 </div>
 
                 {/* Navigation */}
-                <div className="flex items-center justify-between mt-12 pt-8 border-t border-white/10">
+                <div className="flex items-center justify-between mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
                     {prevChapter ? (
                         <Link
                             to={`/chapter/${prevChapter.id}`}
-                            className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors group"
+                            className="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors group"
                         >
                             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                             <div>
@@ -148,7 +148,7 @@ const ChapterDetail = () => {
                     {nextChapter ? (
                         <Link
                             to={`/chapter/${nextChapter.id}`}
-                            className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors group text-right"
+                            className="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors group text-right"
                         >
                             <div>
                                 <div className="text-xs text-gray-500">Chương tiếp</div>

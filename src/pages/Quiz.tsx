@@ -193,13 +193,13 @@ const Quiz = () => {
                             <Trophy className="w-12 h-12 text-white" />
                         </div>
 
-                        <h2 className="text-3xl font-bold text-white mb-4">Hoàn thành!</h2>
+                        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Hoàn thành!</h2>
 
                         <div className="text-6xl font-bold gradient-text mb-4">
                             {score}/{questions.length}
                         </div>
 
-                        <div className="w-full bg-white/10 rounded-full h-4 mb-6">
+                        <div className="w-full bg-gray-200 dark:bg-white/10 rounded-full h-4 mb-6">
                             <div
                                 className={`h-4 rounded-full transition-all duration-1000 ${percentage >= 70 ? 'bg-green-500' : percentage >= 50 ? 'bg-yellow-500' : 'bg-red-500'
                                     }`}
@@ -207,7 +207,7 @@ const Quiz = () => {
                             />
                         </div>
 
-                        <p className="text-xl text-gray-300 mb-8">
+                        <p className="text-xl text-gray-700 dark:text-gray-300 mb-8">
                             {percentage >= 80
                                 ? '🎉 Xuất sắc! Bạn nắm vững kiến thức MAD101!'
                                 : percentage >= 60
@@ -230,21 +230,21 @@ const Quiz = () => {
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 mb-6">
-                        <Brain className="w-5 h-5 text-green-400" />
-                        <span className="text-green-400 font-medium">Luyện tập</span>
+                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 mb-6">
+                        <Brain className="w-5 h-5 text-green-600 dark:text-green-400" />
+                        <span className="text-green-700 dark:text-green-400 font-medium">Luyện tập</span>
                     </div>
-                    <h1 className="text-3xl font-bold text-white mb-2">Kiểm tra kiến thức</h1>
-                    <p className="text-gray-400">Trả lời các câu hỏi để ôn tập MAD101</p>
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Kiểm tra kiến thức</h1>
+                    <p className="text-gray-600 dark:text-gray-400">Trả lời các câu hỏi để ôn tập MAD101</p>
                 </div>
 
                 {/* Progress */}
                 <div className="mb-8">
-                    <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
+                    <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-2">
                         <span>Câu {currentQuestion + 1}/{questions.length}</span>
                         <span>Điểm: {score}</span>
                     </div>
-                    <div className="w-full bg-white/10 rounded-full h-2">
+                    <div className="w-full bg-gray-200 dark:bg-white/10 rounded-full h-2">
                         <div
                             className="h-2 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 transition-all duration-300"
                             style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
@@ -254,11 +254,11 @@ const Quiz = () => {
 
                 {/* Question Card */}
                 <div className="glass-card p-8">
-                    <span className="text-xs px-2 py-1 rounded-full bg-primary-500/20 text-primary-400 mb-4 inline-block">
+                    <span className="text-xs px-2 py-1 rounded-full bg-primary-100 dark:bg-primary-500/20 text-primary-700 dark:text-primary-400 mb-4 inline-block">
                         {question.chapter}
                     </span>
 
-                    <h2 className="text-xl font-semibold text-white mb-6">{question.question}</h2>
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{question.question}</h2>
 
                     <div className="space-y-3">
                         {question.options.map((option, index) => {
@@ -270,16 +270,16 @@ const Quiz = () => {
 
                             if (showFeedback) {
                                 if (isCorrect) {
-                                    buttonClass += 'bg-green-500/20 border-green-500 text-green-300';
+                                    buttonClass += 'bg-green-100 dark:bg-green-500/20 border-green-500 text-green-800 dark:text-green-300';
                                 } else if (isSelected && !isCorrect) {
-                                    buttonClass += 'bg-red-500/20 border-red-500 text-red-300';
+                                    buttonClass += 'bg-red-100 dark:bg-red-500/20 border-red-500 text-red-800 dark:text-red-300';
                                 } else {
-                                    buttonClass += 'bg-white/5 border-white/10 text-gray-500';
+                                    buttonClass += 'bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-400 dark:text-gray-500';
                                 }
                             } else {
                                 buttonClass += isSelected
-                                    ? 'bg-primary-500/20 border-primary-500 text-white'
-                                    : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20';
+                                    ? 'bg-primary-100 dark:bg-primary-500/20 border-primary-500 text-gray-900 dark:text-white'
+                                    : 'bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/20';
                             }
 
                             return (
@@ -290,15 +290,15 @@ const Quiz = () => {
                                     disabled={answered[currentQuestion]}
                                 >
                                     <div className="flex items-center space-x-3">
-                                        <span className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm font-medium">
+                                        <span className="w-8 h-8 rounded-lg bg-gray-200 dark:bg-white/10 flex items-center justify-center text-sm font-medium">
                                             {String.fromCharCode(65 + index)}
                                         </span>
                                         <span className="flex-1">{option}</span>
                                         {showFeedback && isCorrect && (
-                                            <CheckCircle className="w-5 h-5 text-green-400" />
+                                            <CheckCircle className="w-5 h-5 text-green-500" />
                                         )}
                                         {showFeedback && isSelected && !isCorrect && (
-                                            <XCircle className="w-5 h-5 text-red-400" />
+                                            <XCircle className="w-5 h-5 text-red-500" />
                                         )}
                                     </div>
                                 </button>
@@ -308,12 +308,12 @@ const Quiz = () => {
 
                     {/* Explanation */}
                     {showExplanation && (
-                        <div className="mt-6 p-4 rounded-xl bg-primary-500/10 border border-primary-500/20">
+                        <div className="mt-6 p-4 rounded-xl bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20">
                             <div className="flex items-start space-x-3">
-                                <Lightbulb className="w-5 h-5 text-primary-400 flex-shrink-0 mt-0.5" />
+                                <Lightbulb className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" />
                                 <div>
-                                    <h4 className="text-primary-300 font-semibold mb-1">Giải thích</h4>
-                                    <p className="text-gray-300">{question.explanation}</p>
+                                    <h4 className="text-primary-800 dark:text-primary-300 font-semibold mb-1">Giải thích</h4>
+                                    <p className="text-gray-700 dark:text-gray-300">{question.explanation}</p>
                                 </div>
                             </div>
                         </div>
@@ -340,7 +340,7 @@ const Quiz = () => {
                                     ? 'bg-primary-500 scale-125'
                                     : answered[index]
                                         ? 'bg-green-500'
-                                        : 'bg-white/20'
+                                        : 'bg-gray-300 dark:bg-white/20'
                                 }`}
                         />
                     ))}

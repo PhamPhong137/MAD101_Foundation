@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 
@@ -8,7 +8,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
     return (
-        <div className="min-h-screen bg-dark-950 bg-mesh">
+        <div className="min-h-screen bg-gray-50 dark:bg-dark-950 bg-mesh transition-colors duration-300">
             <Sidebar />
 
             {/* Main Content - adjusts for sidebar */}

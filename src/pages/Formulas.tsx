@@ -254,9 +254,9 @@ const Formulas = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-secondary-500/10 border border-secondary-500/20 mb-6">
-                        <FileText className="w-5 h-5 text-secondary-400" />
-                        <span className="text-secondary-400 font-medium">Tổng hợp công thức</span>
+                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-secondary-100 dark:bg-secondary-500/10 border border-secondary-200 dark:border-secondary-500/20 mb-6">
+                        <FileText className="w-5 h-5 text-secondary-600 dark:text-secondary-400" />
+                        <span className="text-secondary-700 dark:text-secondary-400 font-medium">Tổng hợp công thức</span>
                     </div>
                     <h1 className="section-title">Công thức quan trọng</h1>
                     <p className="section-subtitle">
@@ -273,7 +273,7 @@ const Formulas = () => {
                             placeholder="Tìm kiếm công thức..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500/50 transition-all"
+                            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500/50 transition-all"
                         />
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -281,7 +281,7 @@ const Formulas = () => {
                             onClick={() => setSelectedCategory(null)}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${!selectedCategory
                                     ? 'bg-primary-500 text-white'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                                    : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white'
                                 }`}
                         >
                             Tất cả
@@ -292,7 +292,7 @@ const Formulas = () => {
                                 onClick={() => setSelectedCategory(category)}
                                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${selectedCategory === category
                                         ? 'bg-primary-500 text-white'
-                                        : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                                        : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white'
                                     }`}
                             >
                                 {category}
@@ -311,41 +311,41 @@ const Formulas = () => {
                         >
                             <div className="flex items-start justify-between mb-4">
                                 <div>
-                                    <span className="text-xs px-2 py-1 rounded-full bg-primary-500/20 text-primary-400">
+                                    <span className="text-xs px-2 py-1 rounded-full bg-primary-100 dark:bg-primary-500/20 text-primary-700 dark:text-primary-400">
                                         {formula.category}
                                     </span>
                                 </div>
                                 <button
                                     onClick={() => copyFormula(formula)}
-                                    className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all opacity-0 group-hover:opacity-100"
+                                    className="p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all opacity-0 group-hover:opacity-100"
                                     title="Copy công thức"
                                 >
                                     {copiedId === formula.id ? (
-                                        <Check className="w-4 h-4 text-green-400" />
+                                        <Check className="w-4 h-4 text-green-500" />
                                     ) : (
                                         <Copy className="w-4 h-4" />
                                     )}
                                 </button>
                             </div>
 
-                            <h3 className="text-lg font-semibold text-white mb-3">{formula.name}</h3>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">{formula.name}</h3>
 
                             <div className="formula-box mb-3">
-                                <code className="text-primary-300">{formula.formula}</code>
+                                <code className="text-primary-700 dark:text-primary-300">{formula.formula}</code>
                             </div>
 
-                            <p className="text-sm text-gray-400">{formula.description}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">{formula.description}</p>
                         </div>
                     ))}
                 </div>
 
                 {filteredFormulas.length === 0 && (
                     <div className="text-center py-12">
-                        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/5 flex items-center justify-center">
-                            <FileText className="w-10 h-10 text-gray-500" />
+                        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center">
+                            <FileText className="w-10 h-10 text-gray-400 dark:text-gray-500" />
                         </div>
-                        <h3 className="text-xl font-semibold text-white mb-2">Không tìm thấy công thức</h3>
-                        <p className="text-gray-400">Thử tìm với từ khóa hoặc danh mục khác</p>
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Không tìm thấy công thức</h3>
+                        <p className="text-gray-600 dark:text-gray-400">Thử tìm với từ khóa hoặc danh mục khác</p>
                     </div>
                 )}
             </div>

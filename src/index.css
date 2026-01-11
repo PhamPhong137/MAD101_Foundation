@@ -13,22 +13,36 @@
     scroll-behavior: smooth;
   }
 
+  /* Light mode (default) */
   body {
-    @apply bg-dark-950 text-gray-100 font-sans antialiased;
+    @apply bg-gray-50 text-gray-900 font-sans antialiased transition-colors duration-300;
   }
 
-  /* Custom scrollbar */
+  /* Dark mode */
+  .dark body {
+    @apply bg-dark-950 text-gray-100;
+  }
+
+  /* Custom scrollbar - Light */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   ::-webkit-scrollbar-track {
+    @apply bg-gray-200;
+  }
+
+  .dark ::-webkit-scrollbar-track {
     @apply bg-dark-900;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary-600 rounded-full;
+    @apply bg-primary-400 rounded-full;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-primary-600;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -37,16 +51,30 @@
 }
 
 @layer components {
+
+  /* Glass card - Light mode */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl;
+    @apply bg-white/80 backdrop-blur-lg border border-gray-200 rounded-2xl shadow-sm transition-colors duration-300;
+  }
+
+  .dark .glass-card {
+    @apply bg-white/5 border-white/10 shadow-none;
   }
 
   .glass-card-hover {
-    @apply glass-card hover:bg-white/10 hover:border-white/20 transition-all duration-300;
+    @apply glass-card hover:bg-white hover:border-gray-300 hover:shadow-md transition-all duration-300;
+  }
+
+  .dark .glass-card-hover {
+    @apply hover:bg-white/10 hover:border-white/20 hover:shadow-none;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 bg-clip-text text-transparent;
+  }
+
+  .dark .gradient-text {
+    @apply from-primary-400 via-secondary-400 to-primary-400;
   }
 
   .gradient-border {
@@ -58,7 +86,11 @@
   }
 
   .btn-secondary {
-    @apply px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 hover:border-white/30 transform hover:scale-105 transition-all duration-300;
+    @apply px-6 py-3 bg-gray-100 text-gray-800 font-semibold rounded-xl border border-gray-300 hover:bg-gray-200 hover:border-gray-400 transform hover:scale-105 transition-all duration-300;
+  }
+
+  .dark .btn-secondary {
+    @apply bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30;
   }
 
   .section-title {
@@ -66,7 +98,11 @@
   }
 
   .section-subtitle {
-    @apply text-xl text-gray-400 max-w-2xl mx-auto;
+    @apply text-xl text-gray-600 max-w-2xl mx-auto;
+  }
+
+  .dark .section-subtitle {
+    @apply text-gray-400;
   }
 
   .chapter-card {
@@ -74,36 +110,68 @@
   }
 
   .formula-box {
-    @apply bg-dark-800/50 border border-primary-500/30 rounded-xl p-4 font-mono text-sm;
+    @apply bg-primary-50 border border-primary-200 rounded-xl p-4 font-mono text-sm transition-colors duration-300;
+  }
+
+  .dark .formula-box {
+    @apply bg-dark-800/50 border-primary-500/30;
   }
 
   .note-box {
-    @apply bg-secondary-500/10 border-l-4 border-secondary-500 rounded-r-xl p-4;
+    @apply bg-secondary-50 border-l-4 border-secondary-500 rounded-r-xl p-4 transition-colors duration-300;
+  }
+
+  .dark .note-box {
+    @apply bg-secondary-500/10;
   }
 
   .theorem-box {
-    @apply bg-primary-500/10 border-l-4 border-primary-500 rounded-r-xl p-4;
+    @apply bg-primary-50 border-l-4 border-primary-500 rounded-r-xl p-4 transition-colors duration-300;
+  }
+
+  .dark .theorem-box {
+    @apply bg-primary-500/10;
   }
 
   .example-box {
-    @apply bg-green-500/10 border-l-4 border-green-500 rounded-r-xl p-4;
+    @apply bg-green-50 border-l-4 border-green-500 rounded-r-xl p-4 transition-colors duration-300;
+  }
+
+  .dark .example-box {
+    @apply bg-green-500/10;
   }
 
   .nav-link {
-    @apply relative text-gray-300 hover:text-white transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-primary-500 after:to-secondary-500 hover:after:w-full after:transition-all after:duration-300;
+    @apply relative text-gray-600 hover:text-gray-900 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-primary-500 after:to-secondary-500 hover:after:w-full after:transition-all after:duration-300;
+  }
+
+  .dark .nav-link {
+    @apply text-gray-300 hover:text-white;
   }
 
   .nav-link-active {
-    @apply text-white after:w-full;
+    @apply text-gray-900 after:w-full;
+  }
+
+  .dark .nav-link-active {
+    @apply text-white;
   }
 
   /* Math notation styles */
   .math-inline {
-    @apply font-mono text-primary-300 bg-dark-800/50 px-2 py-0.5 rounded;
+    @apply font-mono text-primary-700 bg-primary-50 px-2 py-0.5 rounded;
+  }
+
+  .dark .math-inline {
+    @apply text-primary-300 bg-dark-800/50;
   }
 
   .math-block {
-    @apply font-mono text-center py-4 text-lg text-primary-300 bg-dark-800/30 rounded-xl my-4;
+    @apply font-mono text-center py-4 text-lg text-primary-700 bg-primary-50/50 rounded-xl my-4;
+  }
+
+  .dark .math-block {
+    @apply text-primary-300 bg-dark-800/30;
   }
 
   /* Table styles */
@@ -112,14 +180,26 @@
   }
 
   .truth-table th {
-    @apply bg-primary-500/20 text-primary-300 font-semibold px-4 py-3 text-center border border-white/10;
+    @apply bg-primary-100 text-primary-800 font-semibold px-4 py-3 text-center border border-gray-200;
+  }
+
+  .dark .truth-table th {
+    @apply bg-primary-500/20 text-primary-300 border-white/10;
   }
 
   .truth-table td {
-    @apply px-4 py-2 text-center border border-white/10 font-mono;
+    @apply px-4 py-2 text-center border border-gray-200 font-mono;
+  }
+
+  .dark .truth-table td {
+    @apply border-white/10;
   }
 
   .truth-table tr:hover td {
+    @apply bg-gray-50;
+  }
+
+  .dark .truth-table tr:hover td {
     @apply bg-white/5;
   }
 
@@ -138,7 +218,17 @@
     text-wrap: balance;
   }
 
+  /* Light mode mesh background */
   .bg-mesh {
+    background-image:
+      radial-gradient(at 40% 20%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.06) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(6, 182, 212, 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(217, 70, 239, 0.06) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+  }
+
+  .dark .bg-mesh {
     background-image:
       radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
       radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),

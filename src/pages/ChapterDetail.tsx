@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { chapters } from '../data/chapters';
 import ContentRenderer from '../components/ContentRenderer';
+import Quiz from '../components/Quiz';
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp, BookMarked } from 'lucide-react';
 import { useState } from 'react';
 
@@ -127,6 +128,11 @@ const ChapterDetail = () => {
                         </div>
                     ))}
                 </div>
+
+                {/* Quiz Section */}
+                {chapter.quiz && chapter.quiz.length > 0 && (
+                    <Quiz questions={chapter.quiz} chapterNumber={chapter.number} />
+                )}
 
                 {/* Navigation */}
                 <div className="flex items-center justify-between mt-12 pt-8 border-t border-gray-200 dark:border-white/10">

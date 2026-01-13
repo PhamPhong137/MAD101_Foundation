@@ -1,3 +1,10 @@
+export interface TrueFalseQuestion {
+  id: string;
+  question: string;
+  answer: boolean;
+  explanation: string;
+}
+
 export interface Chapter {
   id: string;
   number: number;
@@ -7,6 +14,7 @@ export interface Chapter {
   icon: string;
   color: string;
   topics: Topic[];
+  quiz?: TrueFalseQuestion[];
 }
 
 export interface Topic {

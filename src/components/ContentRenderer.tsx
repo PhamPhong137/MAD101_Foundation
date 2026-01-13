@@ -201,10 +201,12 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                 return (
                     <div key={index} className="mb-4 overflow-x-auto">
                         {block.title && (
-                            <h4 className="text-gray-700 dark:text-gray-300 font-semibold mb-3 flex items-center text-sm">
-                                <Info className="w-4 h-4 mr-2 text-primary-600 dark:text-primary-400" />
-                                {block.title}
-                            </h4>
+                            <div className="mb-3">
+                                <div className="text-gray-700 dark:text-gray-300 font-semibold flex items-start text-sm">
+                                    <Info className="w-4 h-4 mr-2 mt-0.5 text-primary-600 dark:text-primary-400 flex-shrink-0" />
+                                    <div className="whitespace-pre-line">{block.title}</div>
+                                </div>
+                            </div>
                         )}
                         <table className="truth-table">
                             <thead>
@@ -228,7 +230,19 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                                                             : 'text-gray-700 dark:text-gray-300'
                                                 }
                                             >
-                                                {cell}
+                                                {cell.includes('\n') ? (
+                                                    <div className="space-y-1">
+                                                        {cell.split('\n').map((line, lineIndex) => (
+                                                            <div key={lineIndex} className="font-mono text-sm">
+                                                                {line}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                ) : (
+                                                    <span className={cellIndex === 1 ? 'font-mono text-sm' : ''}>
+                                                        {cell}
+                                                    </span>
+                                                )}
                                             </td>
                                         ))}
                                     </tr>

@@ -81,32 +81,38 @@ export const chapter1: Chapter = {
           content: 'Logical Equivalence: p ≡ q khi và chỉ khi p ↔ q là tautology'
         },
         {
-          type: 'theorem',
-          title: 'De Morgan Laws ⭐',
-          content: '¬(p ∧ q) ≡ ¬p ∨ ¬q | ¬(p ∨ q) ≡ ¬p ∧ ¬q'
+          type: 'table',
+          title: 'Bảng các luật tương đương logic (Some Logical Equivalences)',
+          content: {
+            headers: ['Tên luật', 'Công thức'],
+            rows: [
+              ['Double negation law', '¬(¬p) ≡ p'],
+              ['Identity laws', 'p ∧ T ≡ p\np ∨ F ≡ p'],
+              ['Domination laws', 'p ∨ T ≡ T\np ∧ F ≡ F'],
+              ['Negation laws', 'p ∨ ¬p ≡ T\np ∧ ¬p ≡ F'],
+              ['Idempotent laws', 'p ∨ p ≡ p\np ∧ p ≡ p'],
+              ['Commutative laws', 'p ∨ q ≡ q ∨ p\np ∧ q ≡ q ∧ p'],
+              ['Associative laws', '(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)\n(p ∧ q) ∧ r ≡ p ∧ (q ∧ r)'],
+              ['Distributive laws', 'p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)\np ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)'],
+              ['De Morgan\'s laws ⭐', '¬(p ∧ q) ≡ ¬p ∨ ¬q\n¬(p ∨ q) ≡ ¬p ∧ ¬q'],
+              ['Absorption laws', 'p ∨ (p ∧ q) ≡ p\np ∧ (p ∨ q) ≡ p']
+            ]
+          }
         },
         {
-          type: 'theorem',
-          title: 'Implication Law ⭐',
-          content: 'p → q ≡ ¬p ∨ q'
+          type: 'note',
+          title: '📝 Note: Các công thức quan trọng',
+          content: '• p → q ≡ ¬p ∨ q (Implication Law) | • p ↔ q ≡ (p → q) ∧ (q → p) (Biconditional) | • p ⊕ q ≡ ¬(p ↔ q) (XOR) | • p → q ≡ ¬q → ¬p (Contrapositive)'
         },
         {
-          type: 'theorem',
-          title: 'Biconditional Law',
-          content: 'p ↔ q ≡ (p → q) ∧ (q → p) ≡ (p ∧ q) ∨ (¬p ∧ ¬q)'
+          type: 'example',
+          title: 'Example 1: Chứng minh ¬(p ∨ (¬p ∧ q)) ≡ ¬p ∧ ¬q',
+          content: '¬(p ∨ (¬p ∧ q)) | ≡ ¬p ∧ ¬(¬p ∧ q)  [De Morgan] | ≡ ¬p ∧ (p ∨ ¬q)  [De Morgan] | ≡ (¬p ∧ p) ∨ (¬p ∧ ¬q)  [Distributive] | ≡ F ∨ (¬p ∧ ¬q)  [Negation] | ≡ ¬p ∧ ¬q  [Identity] ✓'
         },
         {
-          type: 'list',
-          content: [
-            'Double Negation: ¬(¬p) ≡ p',
-            'Commutative: p ∧ q ≡ q ∧ p | p ∨ q ≡ q ∨ p',
-            'Associative: (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)',
-            'Distributive: p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)',
-            'Identity: p ∧ T ≡ p | p ∨ F ≡ p',
-            'Domination: p ∨ T ≡ T | p ∧ F ≡ F',
-            'Idempotent: p ∧ p ≡ p | p ∨ p ≡ p',
-            'Absorption: p ∨ (p ∧ q) ≡ p | p ∧ (p ∨ q) ≡ p'
-          ]
+          type: 'example',
+          title: 'Example 2: Chứng minh (p ∧ q) → (p ∨ q) là tautology',
+          content: '(p ∧ q) → (p ∨ q) | ≡ ¬(p ∧ q) ∨ (p ∨ q)  [Implication Law] | ≡ (¬p ∨ ¬q) ∨ (p ∨ q)  [De Morgan] | ≡ (¬p ∨ p) ∨ (¬q ∨ q)  [Associative, Commutative] | ≡ T ∨ T  [Negation] | ≡ T  [Domination] ✓'
         }
       ]
     },
@@ -116,12 +122,17 @@ export const chapter1: Chapter = {
       content: [
         {
           type: 'text',
-          content: 'Predicate (Vị từ): Là mệnh đề chứa biến. Khi gán giá trị cụ thể cho biến, vị từ trở thành mệnh đề.'
+          content: 'Câu "x > 3" không phải là mệnh đề. Nó sẽ trở thành mệnh đề khi gán giá trị cho x.'
         },
         {
-          type: 'example',
-          title: 'Ví dụ Predicate',
-          content: 'P(x): "x > 3" | P(1) = False | P(5) = True | Q(x,y): "x + y = 5" | Q(2,3) = True'
+          type: 'theorem',
+          title: 'Propositional Function (Hàm mệnh đề)',
+          content: 'Câu "x > 3" được gọi là propositional function, ký hiệu P(x). | • x gọi là variable (biến) | • "> 3" gọi là predicate (vị từ) | • P(0) = F, P(5) = T'
+        },
+        {
+          type: 'note',
+          title: 'Multi-variable predicate',
+          content: 'Propositional function có thể có nhiều biến. VD: R(x, y, z) = "x + y < z" với variables x, y, z và R là predicate.'
         },
         {
           type: 'table',
@@ -129,8 +140,8 @@ export const chapter1: Chapter = {
           content: {
             headers: ['Ký hiệu', 'Tên', 'Ý nghĩa', 'True khi'],
             rows: [
-              ['∀x P(x)', 'Universal', 'Với MỌI x, P(x) đúng', 'P(x) đúng với TẤT CẢ giá trị x'],
-              ['∃x P(x)', 'Existential', 'TỒN TẠI x sao cho P(x) đúng', 'P(x) đúng với ÍT NHẤT MỘT giá trị x']
+              ['∀x P(x)', 'Universal (Với mọi)', 'Với MỌI x, P(x) đúng', 'P(x) đúng với TẤT CẢ giá trị x trong domain'],
+              ['∃x P(x)', 'Existential (Tồn tại)', 'TỒN TẠI x sao cho P(x) đúng', 'P(x) đúng với ÍT NHẤT MỘT giá trị x']
             ]
           }
         },
@@ -140,9 +151,19 @@ export const chapter1: Chapter = {
           content: '¬∀x P(x) ≡ ∃x ¬P(x) | ¬∃x P(x) ≡ ∀x ¬P(x)'
         },
         {
-          type: 'note',
-          title: 'Cách nhớ',
-          content: 'Phủ định "với mọi" → "tồn tại ... không" | Phủ định "tồn tại" → "với mọi ... không"'
+          type: 'theorem',
+          title: 'Negating Quantified Expressions',
+          content: 'Khi phủ định biểu thức với lượng từ: | 1. Đổi ∀ thành ∃ (và ngược lại) | 2. Phủ định predicate bên trong'
+        },
+        {
+          type: 'example',
+          title: 'Example: Viết lại ¬∀x(P(x) → Q(x)) sao cho ¬ đứng trước predicates',
+          content: '¬∀x(P(x) → Q(x)) | ≡ ∃x ¬(P(x) → Q(x))  [Phủ định ∀ → ∃] | ≡ ∃x ¬(¬P(x) ∨ Q(x))  [p → q ≡ ¬p ∨ q] | ≡ ∃x (P(x) ∧ ¬Q(x))  [De Morgan] ✓'
+        },
+        {
+          type: 'example',
+          title: 'Example: Cho x là số thực. Xác định giá trị chân lý:',
+          content: '✅ (a) ∀x((x > 0) → (x² ≥ x)) = TRUE (với mọi x > 0, x² ≥ x đúng khi x ≥ 1, sai khi 0 < x < 1, nhưng → vẫn đúng) | ❌ (b) ∀x((x > 0) ∧ (x² ≥ x)) = FALSE (x = -1 không thỏa) | ✅ (c) ∀x((x > 0) ∨ (x² ≥ x)) = TRUE (mọi x đều thỏa ít nhất 1 vế) | ✅ (d) ∃x((x > 0) → (x² ≥ x)) = TRUE (tồn tại x = 2 thỏa) | ✅ (e) ∃x((x > 0) ∧ (x² ≥ x)) = TRUE (x = 2: 2 > 0 và 4 ≥ 2) | ✅ (f) ∃x((x > 0) ∨ (x² ≥ x)) = TRUE (x = 1 thỏa)'
         }
       ]
     },
@@ -151,23 +172,66 @@ export const chapter1: Chapter = {
       title: '1.4 Nested Quantifiers (Lượng từ lồng nhau)',
       content: [
         {
-          type: 'text',
-          content: 'Khi có nhiều biến, ta sử dụng nhiều lượng từ. Thứ tự các lượng từ RẤT QUAN TRỌNG!'
-        },
-        {
-          type: 'example',
-          title: 'Ví dụ',
-          content: '∀x∀y P(x,y): Với mọi x, với mọi y, P(x,y) đúng | ∀x∃y P(x,y): Với mọi x, tồn tại y sao cho P(x,y) đúng | ∃x∀y P(x,y): Tồn tại x, với mọi y, P(x,y) đúng | ∃x∃y P(x,y): Tồn tại x và tồn tại y sao cho P(x,y) đúng'
+          type: 'table',
+          title: '📚 Ý nghĩa các lượng từ lồng nhau',
+          content: {
+            headers: ['Biểu thức', 'Ý nghĩa (English)'],
+            rows: [
+              ['∀x∀y P(x,y)', 'For all x and for all y, P(x,y) is true'],
+              ['∀x∃y P(x,y)', 'For all x, there exists y such that P(x,y) is true'],
+              ['∃x∀y P(x,y)', 'There exists x such that for all y, P(x,y) is true'],
+              ['∃x∃y P(x,y)', 'There exist x and y such that P(x,y) is true']
+            ]
+          }
         },
         {
           type: 'note',
-          title: '⚠️ Thứ tự quan trọng!',
-          content: '∀x∃y P(x,y) ≠ ∃y∀x P(x,y) | VD: ∀x∃y (x + y = 0) là TRUE (với mỗi x, chọn y = -x) | Nhưng ∃y∀x (x + y = 0) là FALSE (không tồn tại y cố định thỏa mọi x)'
+          title: '⚠️ The order of quantifiers is IMPORTANT!',
+          content: '∀x∃y P(x,y) ≠ ∃y∀x P(x,y)'
         },
         {
-          type: 'theorem',
-          title: 'Phủ định lượng từ lồng nhau',
-          content: '¬∀x∀y P(x,y) ≡ ∃x∃y ¬P(x,y) | ¬∀x∃y P(x,y) ≡ ∃x∀y ¬P(x,y) | ¬∃x∀y P(x,y) ≡ ∀x∃y ¬P(x,y) | ¬∃x∃y P(x,y) ≡ ∀x∀y ¬P(x,y)'
+          type: 'table',
+          title: 'Example: Giá trị chân lý với P(x,y) = "x + y = 1" trên ℝ',
+          content: {
+            headers: ['Biểu thức', 'Giá trị', 'Giải thích'],
+            rows: [
+              ['∀x∀y (x + y = 1)', 'FALSE', 'Không phải mọi cặp (x,y) có tổng = 1'],
+              ['∀x∃y (x + y = 1)', 'TRUE', 'Với mỗi x, chọn y = 1 - x'],
+              ['∃x∀y (x + y = 1)', 'FALSE', 'Không tồn tại x cố định thỏa mọi y'],
+              ['∃x∃y (x + y = 1)', 'TRUE', 'VD: x = 0, y = 1']
+            ]
+          }
+        },
+        {
+          type: 'table',
+          title: 'Translate Sentences → Logic (Dịch câu sang logic)',
+          content: {
+            headers: ['Câu tiếng Anh', 'Biểu thức Logic'],
+            rows: [
+              ['Each student emails others (not self)', '∀x∀y ((x ≠ y) → E(x,y))\nE(x,y) = "x emails y"'],
+              ['Each student has car OR roommate has car', '∀x (C(x) ∨ ∃y(R(x,y) ∧ C(y)))\nC(x)="has car", R(x,y)="roommates"'],
+              ['Exactly ONE student born in Hanoi', '∃x (H(x) ∧ ∀y(H(y) → y=x))'],
+              ['Exactly TWO students born in Hanoi', '∃x∃y (x≠y ∧ H(x) ∧ H(y) ∧ ∀z(H(z) → z=x ∨ z=y))']
+            ]
+          }
+        },
+        {
+          type: 'table',
+          title: 'Negating Nested Quantifiers (Phủ định)',
+          content: {
+            headers: ['Biểu thức gốc', 'Phủ định'],
+            rows: [
+              ['∀x∀y P(x,y)', '∃x∃y ¬P(x,y)'],
+              ['∀x∃y P(x,y)', '∃x∀y ¬P(x,y)'],
+              ['∃x∀y P(x,y)', '∀x∃y ¬P(x,y)'],
+              ['∃x∃y P(x,y)', '∀x∀y ¬P(x,y)']
+            ]
+          }
+        },
+        {
+          type: 'example',
+          title: 'Example: Dịch và phủ định',
+          content: 'Câu: "For all real x there is y such that x = y³" | Dịch: ∀x∃y (x = y³) | Phủ định: ∃x∀y (x ≠ y³) | Nghĩa: "Tồn tại x sao cho với mọi y, x ≠ y³"'
         }
       ]
     },
@@ -177,48 +241,64 @@ export const chapter1: Chapter = {
       content: [
         {
           type: 'text',
-          content: 'Các quy tắc suy luận cho phép ta rút ra kết luận từ các tiền đề.'
+          content: 'An argument is a sequence of statements that end with a conclusion. An argument is valid if it is based on a tautology. Arguments not based on tautology are called fallacies.'
         },
         {
-          type: 'theorem',
-          title: 'Modus Ponens ⭐',
-          content: 'Từ p và (p → q), suy ra q | [(p) ∧ (p → q)] → q'
+          type: 'table',
+          title: 'Bảng các quy tắc suy luận',
+          content: {
+            headers: ['Name', 'Rule of Inference', 'Tautology'],
+            rows: [
+              ['Addition', 'p\n∴ p ∨ q', 'p → (p ∨ q)'],
+              ['Simplification', 'p ∧ q\n∴ p', '(p ∧ q) → p'],
+              ['Modus Ponens ⭐', 'p\np → q\n∴ q', 'p ∧ (p → q) → q'],
+              ['Modus Tollens ⭐', '¬q\np → q\n∴ ¬p', '(¬q) ∧ (p → q) → ¬p'],
+              ['Hypothetical Syllogism', 'p → q\nq → r\n∴ p → r', '(p → q) ∧ (q → r) → (p → r)'],
+              ['Disjunctive Syllogism', '¬p\np ∨ q\n∴ q', '(p ∨ q) ∧ (¬p) → q'],
+              ['Resolution', 'p ∨ q\n¬p ∨ r\n∴ q ∨ r', '(p ∨ q) ∧ (¬p ∨ r) → (q ∨ r)']
+            ]
+          }
         },
         {
-          type: 'theorem',
-          title: 'Modus Tollens ⭐',
-          content: 'Từ ¬q và (p → q), suy ra ¬p | [(¬q) ∧ (p → q)] → ¬p'
-        },
-        {
-          type: 'theorem',
-          title: 'Hypothetical Syllogism',
-          content: 'Từ (p → q) và (q → r), suy ra (p → r) | [(p → q) ∧ (q → r)] → (p → r)'
-        },
-        {
-          type: 'theorem',
-          title: 'Disjunctive Syllogism',
-          content: 'Từ (p ∨ q) và ¬p, suy ra q | [(p ∨ q) ∧ ¬p] → q'
-        },
-        {
-          type: 'theorem',
-          title: 'Addition & Simplification',
-          content: 'Addition: p → (p ∨ q) | Simplification: (p ∧ q) → p'
-        },
-        {
-          type: 'theorem',
-          title: 'Resolution',
-          content: 'Từ (p ∨ q) và (¬p ∨ r), suy ra (q ∨ r) | [(p ∨ q) ∧ (¬p ∨ r)] → (q ∨ r)'
+          type: 'table',
+          title: '📚 Rules of Inference for Quantified Statements',
+          content: {
+            headers: ['Name', 'Rule of Inference'],
+            rows: [
+              ['Universal instantiation', '∀xP(x)\n∴ P(c), c is arbitrary'],
+              ['Universal generalization', 'P(c), c is arbitrary\n∴ ∀xP(x)'],
+              ['Existential instantiation', '∃xP(x)\n∴ P(c), for some c'],
+              ['Existential generalization', 'P(c), for some c\n∴ ∃xP(x)']
+            ]
+          }
         },
         {
           type: 'note',
-          title: '⚠️ Fallacies (Ngụy biện) - SAI!',
+          title: '⚠️ Fallacies (Ngụy biện) - KHÔNG hợp lệ!',
           content: '• Affirming the Consequent: [(p → q) ∧ q] → p ❌ | • Denying the Antecedent: [(p → q) ∧ ¬p] → ¬q ❌'
+        },
+        {
+          type: 'table',
+          title: 'Example: Given the hypotheses:\n• "It is not sunny and is cold"\n• "We go swimming only if it is sunny"\n• "If we do not go swimming then we will play soccer"\n• "If we play soccer then we will go home by sunset"\n\nShow that these hypotheses lead to the conclusion: "We will go home by sunset".\n\nĐịnh nghĩa: s = "sunny", c = "cold", w = "go swimming", p = "play soccer", h = "go home by sunset"',
+          content: {
+            headers: ['Step', 'Statement', 'Reason'],
+            rows: [
+              ['1', '¬s ∧ c', 'Hypothesis'],
+              ['2', '¬s', 'Simplification from (1)'],
+              ['3', 'w → s', 'Hypothesis'],
+              ['4', '¬w', 'Modus Tollens from (2), (3)'],
+              ['5', '¬w → p', 'Hypothesis'],
+              ['6', 'p', 'Modus Ponens from (4), (5)'],
+              ['7', 'p → h', 'Hypothesis'],
+              ['8', 'h ✓', 'Modus Ponens from (6), (7)']
+            ]
+          }
         }
       ]
     },
     {
       id: '1.6-introduction-to-proofs',
-      title: '1.6 Introduction to Proofs (Giới thiệu chứng minh)',
+      title: '📖 1.6 Introduction to Proofs (Đọc thêm)',
       content: [
         {
           type: 'text',
@@ -243,7 +323,7 @@ export const chapter1: Chapter = {
     },
     {
       id: '1.7-proof-methods',
-      title: '1.7 Proof Methods and Strategy (Phương pháp chứng minh)',
+      title: '📖 1.7 Proof Methods and Strategy (Đọc thêm)',
       content: [
         {
           type: 'theorem',
@@ -350,6 +430,54 @@ export const chapter1: Chapter = {
       question: 'Contrapositive của p → q là ¬q → ¬p.',
       answer: true,
       explanation: 'Contrapositive ¬q → ¬p tương đương logic với p → q.'
+    },
+    {
+      id: 'q1-13',
+      question: 'p ∨ ¬p là một tautology.',
+      answer: true,
+      explanation: 'p ∨ ¬p luôn TRUE với mọi giá trị của p, nên đây là tautology.'
+    },
+    {
+      id: 'q1-14',
+      question: 'p ∧ ¬p là một contradiction.',
+      answer: true,
+      explanation: 'p ∧ ¬p luôn FALSE với mọi giá trị của p, nên đây là contradiction.'
+    },
+    {
+      id: 'q1-15',
+      question: 'Modus Tollens: Từ ¬q và p → q, suy ra ¬p.',
+      answer: true,
+      explanation: 'Modus Tollens: nếu kết luận sai (¬q) và p → q đúng, thì tiền đề phải sai (¬p).'
+    },
+    {
+      id: 'q1-16',
+      question: '∀x∃y (x + y = 1) là FALSE trên tập số thực.',
+      answer: false,
+      explanation: 'Đây là TRUE vì với mỗi x, ta có thể chọn y = 1 - x để x + y = 1.'
+    },
+    {
+      id: 'q1-17',
+      question: '∃x∀y (x + y = 1) là TRUE trên tập số thực.',
+      answer: false,
+      explanation: 'Đây là FALSE vì không tồn tại x cố định sao cho x + y = 1 với MỌI y.'
+    },
+    {
+      id: 'q1-18',
+      question: 'p ⊕ q tương đương với ¬(p ↔ q).',
+      answer: true,
+      explanation: 'XOR (p ⊕ q) đúng khi p và q khác giá trị, ngược với biconditional.'
+    },
+    {
+      id: 'q1-19',
+      question: 'Affirming the Consequent [(p → q) ∧ q] → p là một quy tắc suy luận hợp lệ.',
+      answer: false,
+      explanation: 'Đây là một fallacy (ngụy biện). VD: Nếu mưa thì đường ướt, đường ướt → mưa? Sai!'
+    },
+    {
+      id: 'q1-20',
+      question: 'Universal instantiation: Từ ∀xP(x), suy ra P(c) với c bất kỳ.',
+      answer: true,
+      explanation: 'Nếu P(x) đúng với mọi x, thì P(c) đúng với bất kỳ giá trị c nào.'
     }
   ]
 };

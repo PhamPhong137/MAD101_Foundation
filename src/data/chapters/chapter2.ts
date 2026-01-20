@@ -606,6 +606,66 @@ export const chapter2: Chapter = {
       question: 'The cardinality of the integers (ℤ) is Infinite.',
       answer: true,
       explanation: 'The set of integers is countably infinite.'
+    },
+    {
+      id: 'q2-21',
+      question: 'f: ℝ → ℝ, f(x) = x² is one-to-one (injective).',
+      answer: false,
+      explanation: 'Not one-to-one: f(1) = f(-1) = 1, two different inputs give the same output.'
+    },
+    {
+      id: 'q2-22',
+      question: 'f: ℝ⁺ → ℝ⁺, f(x) = x² is one-to-one (injective).',
+      answer: true,
+      explanation: 'On positive reals, f is strictly increasing, so different inputs always give different outputs.'
+    },
+    {
+      id: 'q2-23',
+      question: 'f: ℝ → ℝ, f(x) = x³ is a bijection.',
+      answer: true,
+      explanation: 'f(x) = x³ is both one-to-one (strictly increasing) and onto (range = ℝ).'
+    },
+    {
+      id: 'q2-24',
+      question: 'f: ℝ → ℤ, f(x) = ⌊2x⌋ is onto (surjective).',
+      answer: true,
+      explanation: 'For any integer n, f(n/2) = n. Every integer is covered.'
+    },
+    {
+      id: 'q2-25',
+      question: 'f: ℝ → ℤ, f(x) = 2⌊x⌋ is onto (surjective).',
+      answer: false,
+      explanation: 'Range is only even integers {..,-4,-2,0,2,4,..}. Odd integers are not in the range.'
+    },
+    {
+      id: 'q2-26',
+      question: 'There exists a bijection from a set of 5 elements to a set of 7 elements.',
+      answer: false,
+      explanation: 'Bijection requires |A| = |B|. A 5-element set cannot biject to a 7-element set.'
+    },
+    {
+      id: 'q2-27',
+      question: 'f: ℤ×ℤ → ℤ, f(m,n) = m + n is onto (surjective).',
+      answer: true,
+      explanation: 'For any integer k, f(k, 0) = k. Every integer is in the range.'
+    },
+    {
+      id: 'q2-28',
+      question: 'f: ℤ×ℤ → ℤ, f(m,n) = m + n is one-to-one (injective).',
+      answer: false,
+      explanation: 'Not one-to-one: f(1,2) = f(0,3) = 3. Different inputs give the same output.'
+    },
+    {
+      id: 'q2-29',
+      question: 'There exists a bijection from the set of even integers to the set of odd integers.',
+      answer: true,
+      explanation: 'f(n) = n + 1 maps each even to a unique odd, and covers all odds.'
+    },
+    {
+      id: 'q2-30',
+      question: 'If f: A → B is a bijection, then f has an inverse function f⁻¹: B → A.',
+      answer: true,
+      explanation: 'Bijections are invertible by definition. f⁻¹(y) = x ⟺ f(x) = y.'
     }
   ]
 };

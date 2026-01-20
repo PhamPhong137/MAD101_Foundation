@@ -1,14 +1,19 @@
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { ContentBlock, TableData } from '../types';
-import { Info, Lightbulb, BookOpen, CheckCircle, Check, X } from 'lucide-react';
+import { Info, Lightbulb, BookOpen, CheckCircle, Check, X, Maximize2 } from 'lucide-react';
 
 interface ContentRendererProps {
     content: ContentBlock[];
 }
 
-// Helper function to parse content with | separators
-const parseItems = (content: string): { text: string; isCorrect?: boolean }[] => {
-    const items = content.split('|').map(item => item.trim()).filter(Boolean);
-    return items.map(item => {
+// Helper function to parse content with | separators or from array
+const parseItems = (content: string | string[]): { text: string; isCorrect?: boolean }[] => {
+    const rawItems = Array.isArray(content)
+        ? content
+        : content.split('|').map(item => item.trim()).filter(Boolean);
+
+    return rawItems.map(item => {
         if (item.startsWith('✅') || item.startsWith('✓')) {
             return { text: item.replace(/^[✅✓]\s*/, ''), isCorrect: true };
         } else if (item.startsWith('❌') || item.startsWith('✗')) {
@@ -22,14 +27,26 @@ const parseItems = (content: string): { text: string; isCorrect?: boolean }[] =>
     });
 };
 
-const hasExampleMarkers = (content: string): boolean => {
+const hasExampleMarkers = (content: string | string[]): boolean => {
+    if (Array.isArray(content)) {
+        return content.some(item =>
+            item.includes('✅') || item.includes('❌') ||
+            item.includes('KHÔNG phải') || item.includes('→ Mệnh đề') ||
+            item.includes('(True)') || item.includes('(False)')
+        );
+    }
     return content.includes('✅') || content.includes('❌') ||
         (content.includes('|') && (content.includes('KHÔNG phải') || content.includes('→ Mệnh đề')));
 };
 
 const ContentRenderer = ({ content }: ContentRendererProps) => {
-    const renderSimpleList = (contentStr: string) => {
-        const items = contentStr.split('|').map(s => s.trim()).filter(Boolean);
+    const [expandedImage, setExpandedImage] = useState<string | null>(null);
+
+    const renderSimpleList = (content: string | string[]) => {
+        const items = Array.isArray(content)
+            ? content
+            : content.split('|').map(s => s.trim()).filter(Boolean);
+
         return (
             <div className="space-y-1">
                 {items.map((item, i) => (
@@ -42,8 +59,8 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
         );
     };
 
-    const renderExampleItems = (contentStr: string) => {
-        const items = parseItems(contentStr);
+    const renderExampleItems = (content: string | string[]) => {
+        const items = parseItems(content);
         return (
             <div className="space-y-1.5 mt-2">
                 {items.map((item, i) => (
@@ -78,14 +95,30 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
         switch (block.type) {
             case 'text':
                 return (
-                    <p key={index} className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                        {block.content as string}
-                    </p>
+                    <div key={index} className="mb-4">
+                        {block.title && (
+                            <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                                {block.title}
+                            </h4>
+                        )}
+                        {Array.isArray(block.content) ? (
+                            block.content.map((paragraph, i) => (
+                                <p key={i} className="text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+                                    {paragraph}
+                                </p>
+                            ))
+                        ) : (
+                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {block.content as string}
+                            </p>
+                        )}
+                    </div>
                 );
 
             case 'formula':
-                const formulaContent = block.content as string;
-                const formulaItems = formulaContent.split('|').map(s => s.trim()).filter(Boolean);
+                const formulaItems = Array.isArray(block.content)
+                    ? block.content
+                    : (block.content as string).split('|').map(s => s.trim()).filter(Boolean);
 
                 return (
                     <div key={index} className="formula-box mb-4">
@@ -99,15 +132,16 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                             </div>
                         ) : (
                             <div className="text-primary-700 dark:text-primary-300 text-center">
-                                {formulaContent}
+                                {block.content as string}
                             </div>
                         )}
                     </div>
                 );
 
             case 'theorem':
-                const theoremContent = block.content as string;
-                const theoremItems = theoremContent.split('|').map(s => s.trim()).filter(Boolean);
+                const theoremItems = Array.isArray(block.content)
+                    ? block.content
+                    : (block.content as string).split('|').map(s => s.trim()).filter(Boolean);
 
                 return (
                     <div key={index} className="theorem-box mb-4">
@@ -126,7 +160,7 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text-gray-700 dark:text-gray-300">{theoremContent}</p>
+                                    <p className="text-gray-700 dark:text-gray-300">{block.content as string}</p>
                                 )}
                             </div>
                         </div>
@@ -134,8 +168,9 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                 );
 
             case 'note':
-                const noteContent = block.content as string;
-                const noteItems = noteContent.split('|').map(s => s.trim()).filter(Boolean);
+                const noteItems = Array.isArray(block.content)
+                    ? block.content
+                    : (block.content as string).split('|').map(s => s.trim()).filter(Boolean);
 
                 return (
                     <div key={index} className="note-box mb-4">
@@ -154,7 +189,7 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text-gray-700 dark:text-gray-300">{noteContent}</p>
+                                    <p className="text-gray-700 dark:text-gray-300">{block.content as string}</p>
                                 )}
                             </div>
                         </div>
@@ -162,7 +197,7 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                 );
 
             case 'example':
-                const exampleContent = block.content as string;
+                const exampleContent = block.content as string | string[];
 
                 return (
                     <div key={index} className="example-box mb-4">
@@ -174,7 +209,7 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                                 )}
                                 {hasExampleMarkers(exampleContent) ? (
                                     renderExampleItems(exampleContent)
-                                ) : exampleContent.includes('|') ? (
+                                ) : (Array.isArray(exampleContent) || exampleContent.includes('|')) ? (
                                     renderSimpleList(exampleContent)
                                 ) : (
                                     <p className="text-gray-700 dark:text-gray-300 text-sm">{exampleContent}</p>
@@ -252,15 +287,78 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                     </div>
                 );
 
+            case 'image':
+                return (
+                    <div key={index} className="mb-6 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
+                        <div className="flex flex-col md:flex-row">
+                            <div className="md:w-1/2 flex-shrink-0 bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4 relative group">
+                                <img
+                                    src={block.imageSrc}
+                                    alt={block.title || 'Diagram'}
+                                    className="max-w-full h-auto object-contain rounded-lg"
+                                    style={{ maxHeight: '220px' }}
+                                />
+                                <button
+                                    onClick={() => setExpandedImage(block.imageSrc || null)}
+                                    className="absolute top-2 right-2 p-2 bg-white/80 dark:bg-gray-800/80 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary-100 dark:hover:bg-primary-900"
+                                    title="Phóng to ảnh"
+                                >
+                                    <Maximize2 className="w-4 h-4 text-gray-700 dark:text-gray-300" />
+                                </button>
+                            </div>
+                            <div className="md:w-1/2 p-4 flex flex-col justify-center">
+                                {block.title && (
+                                    <h4 className="text-primary-700 dark:text-primary-400 font-bold text-base mb-2">
+                                        {block.title}
+                                    </h4>
+                                )}
+                                {block.content && typeof block.content === 'string' && (
+                                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                        {block.content}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+
             default:
                 return null;
         }
     };
 
     return (
-        <div className="space-y-2">
-            {content.map((block, index) => renderBlock(block, index))}
-        </div>
+        <>
+            <div className="space-y-2">
+                {content.map((block, index) => renderBlock(block, index))}
+            </div>
+
+            {/* Image Modal - Full Screen (rendered to body via portal) */}
+            {expandedImage && createPortal(
+                <div
+                    className="fixed inset-0 z-[9999] bg-black flex items-center justify-center cursor-pointer"
+                    onClick={() => setExpandedImage(null)}
+                    style={{ margin: 0, padding: 0 }}
+                >
+                    <img
+                        src={expandedImage}
+                        alt="Expanded view"
+                        className="max-w-full max-h-full object-contain"
+                        style={{ width: '70vw', height: '70vh', objectFit: 'contain' }}
+                    />
+                    <button
+                        onClick={(e) => { e.stopPropagation(); setExpandedImage(null); }}
+                        className="absolute top-6 right-6 p-3 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+                    >
+                        <X className="w-8 h-8 text-white" />
+                    </button>
+                    <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-sm">
+                        Click anywhere to close
+                    </p>
+                </div>,
+                document.body
+            )}
+        </>
     );
 };
 

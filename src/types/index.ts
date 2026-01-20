@@ -24,9 +24,10 @@ export interface Topic {
 }
 
 export interface ContentBlock {
-  type: 'text' | 'formula' | 'table' | 'note' | 'theorem' | 'example' | 'list';
+  type: 'text' | 'formula' | 'table' | 'note' | 'theorem' | 'example' | 'list' | 'image';
   content: string | string[] | TableData;
   title?: string;
+  imageSrc?: string;
 }
 
 export interface TableData {

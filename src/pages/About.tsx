@@ -7,9 +7,9 @@ const About = () => {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 mb-6">
-                        <Info className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        <span className="text-blue-700 dark:text-blue-400 font-medium">Giới thiệu</span>
+                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 mb-6">
+                        <Info className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                        <span className="text-primary-700 dark:text-primary-400 font-medium">Giới thiệu</span>
                     </div>
                     <h1 className="section-title">Về MAD101 Study Guide</h1>
                     <p className="section-subtitle">
@@ -39,7 +39,7 @@ const About = () => {
                     {/* Features */}
                     <div className="glass-card p-8">
                         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-                            <Target className="w-6 h-6 mr-3 text-secondary-600 dark:text-secondary-400" />
+                            <Target className="w-6 h-6 mr-3 text-primary-600 dark:text-primary-400" />
                             Tính năng chính
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -86,7 +86,7 @@ const About = () => {
                                 >
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center space-x-4">
-                                            <span className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center text-primary-700 dark:text-primary-400 font-mono">
+                                            <span className="w-10 h-10 rounded-lg bg-primary-500/15 flex items-center justify-center text-primary-700 dark:text-primary-400 font-mono">
                                                 {chapter.num}
                                             </span>
                                             <div>
@@ -187,7 +187,7 @@ const About = () => {
                         </p>
                         <div className="flex items-center justify-center space-x-4 mt-6">
                             <a
-                                href="https://github.com"
+                                href="https://github.com/FPTAIEZ/fptaiez-mad101"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-3 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-all"

@@ -68,7 +68,7 @@ const Chapters = () => {
                             <div className="text-sm text-gray-600 dark:text-gray-400">Chương học</div>
                         </div>
                         <div className="text-center p-4 bg-gray-100 dark:bg-white/5 rounded-xl">
-                            <div className="text-3xl font-bold text-secondary-600 dark:text-secondary-400 mb-1">
+                            <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-1">
                                 {chapters.reduce((acc, ch) => acc + ch.topics.length, 0)}
                             </div>
                             <div className="text-sm text-gray-600 dark:text-gray-400">Chủ đề</div>

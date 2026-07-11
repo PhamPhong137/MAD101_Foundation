@@ -68,7 +68,7 @@ const Quiz = ({ questions, chapterNumber }: QuizProps) => {
         <div className="glass-card p-6 mt-8">
             <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
                         <AlertCircle className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -94,7 +94,7 @@ const Quiz = ({ questions, chapterNumber }: QuizProps) => {
 
             {/* Score Summary */}
             {allAnswered && (
-                <div className="mb-6 p-4 rounded-xl bg-gradient-to-r from-primary-500/10 to-secondary-500/10 border border-primary-500/20">
+                <div className="mb-6 p-4 rounded-xl bg-primary-500/10 border border-primary-500/20">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                             <Trophy className={`w-8 h-8 ${getScoreColor()}`} />
@@ -153,7 +153,7 @@ const Quiz = ({ questions, chapterNumber }: QuizProps) => {
                                 }`}
                         >
                             <div className="flex items-start space-x-3">
-                                <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center text-sm font-mono text-primary-700 dark:text-primary-400">
+                                <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary-500/15 flex items-center justify-center text-sm font-mono text-primary-700 dark:text-primary-400">
                                     {index + 1}
                                 </span>
                                 <div className="flex-1">
@@ -238,7 +238,7 @@ const Quiz = ({ questions, chapterNumber }: QuizProps) => {
                         <span>Tiến độ: {Object.keys(answers).length}/{questions.length} câu</span>
                         <div className="w-32 h-2 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
                             <div
-                                className="h-full bg-gradient-to-r from-primary-500 to-secondary-500 transition-all duration-300"
+                                className="h-full bg-primary-500 transition-all duration-300"
                                 style={{ width: `${(Object.keys(answers).length / questions.length) * 100}%` }}
                             />
                         </div>

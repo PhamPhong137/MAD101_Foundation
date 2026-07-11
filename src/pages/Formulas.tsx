@@ -254,9 +254,9 @@ const Formulas = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-secondary-100 dark:bg-secondary-500/10 border border-secondary-200 dark:border-secondary-500/20 mb-6">
-                        <FileText className="w-5 h-5 text-secondary-600 dark:text-secondary-400" />
-                        <span className="text-secondary-700 dark:text-secondary-400 font-medium">Tổng hợp công thức</span>
+                    <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20 mb-6">
+                        <FileText className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                        <span className="text-primary-700 dark:text-primary-400 font-medium">Tổng hợp công thức</span>
                     </div>
                     <h1 className="section-title">Công thức quan trọng</h1>
                     <p className="section-subtitle">

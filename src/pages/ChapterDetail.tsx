@@ -108,7 +108,7 @@ const ChapterDetail = () => {
                                 className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                             >
                                 <div className="flex items-center space-x-4">
-                                    <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center text-sm font-mono text-primary-700 dark:text-primary-400">
+                                    <span className="w-8 h-8 rounded-lg bg-primary-500/15 flex items-center justify-center text-sm font-mono text-primary-700 dark:text-primary-400">
                                         {index + 1}
                                     </span>
                                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{topic.title}</h3>

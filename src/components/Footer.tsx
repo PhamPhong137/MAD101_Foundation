@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Github, Facebook, Mail, Heart, ExternalLink } from 'lucide-react';
+import { Github, Facebook, Heart, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -14,7 +14,7 @@ const Footer = () => {
                     {/* Brand */}
                     <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
                                 <span className="text-white font-bold text-lg">M</span>
                             </div>
                             <div>
@@ -73,7 +73,7 @@ const Footer = () => {
 
                         <div className="flex items-center space-x-3 pt-4">
                             <a
-                                href="https://github.com"
+                                href="https://github.com/FPTAIEZ/fptaiez-mad101"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
@@ -87,12 +87,6 @@ const Footer = () => {
                                 className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
                             >
                                 <Facebook className="w-5 h-5" />
-                            </a>
-                            <a
-                                href="mailto:support@example.com"
-                                className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
-                            >
-                                <Mail className="w-5 h-5" />
                             </a>
                         </div>
                     </div>

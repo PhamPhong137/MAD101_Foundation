@@ -27,7 +27,7 @@ const ChapterCard = ({ chapter, index }: ChapterCardProps) => {
             {/* Content - flex-1 để chiếm hết không gian còn lại */}
             <div className="flex-1 flex flex-col">
                 {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-primary-600 dark:group-hover:from-primary-400 group-hover:to-secondary-600 dark:group-hover:to-secondary-400 group-hover:bg-clip-text transition-all duration-300">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
                     {chapter.title}
                 </h3>
 
@@ -53,8 +53,8 @@ const ChapterCard = ({ chapter, index }: ChapterCardProps) => {
                 </div>
             </div>
 
-            {/* Hover gradient border */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-500/0 via-secondary-500/0 to-primary-500/0 group-hover:from-primary-500/10 dark:group-hover:from-primary-500/20 group-hover:via-secondary-500/10 dark:group-hover:via-secondary-500/20 group-hover:to-primary-500/10 dark:group-hover:to-primary-500/20 transition-all duration-500 -z-10" />
+            {/* Hover tint */}
+            <div className="absolute inset-0 rounded-2xl bg-primary-500/0 group-hover:bg-primary-500/10 dark:group-hover:bg-primary-500/15 transition-all duration-500 -z-10" />
         </Link>
     );
 };

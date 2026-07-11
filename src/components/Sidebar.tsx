@@ -35,7 +35,7 @@ const Sidebar = () => {
             {/* Mobile Header */}
             <div className="lg:hidden fixed top-0 left-0 right-0 z-50 h-16 bg-white/90 dark:bg-dark-900/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 flex items-center justify-between px-4 transition-colors duration-300">
                 <Link to="/" className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
                         <span className="text-white font-bold text-lg">M</span>
                     </div>
                     <span className="text-xl font-bold gradient-text font-display">MAD101</span>
@@ -78,7 +78,7 @@ const Sidebar = () => {
                 {/* Sidebar Header */}
                 <div className={`h-20 flex items-center border-b border-gray-200 dark:border-white/5 ${isCollapsed ? 'justify-center px-2' : 'justify-between px-6'}`}>
                     <Link to="/" className="flex items-center space-x-3" onClick={() => setIsMobileOpen(false)}>
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                             <span className="text-white font-bold text-lg">M</span>
                         </div>
                         {!isCollapsed && (
@@ -120,7 +120,7 @@ const Sidebar = () => {
                                 className={`
                   flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group
                   ${isActive
-                                        ? 'bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-primary-700 dark:text-white border border-primary-200 dark:border-primary-500/30'
+                                        ? 'bg-primary-500/10 text-primary-700 dark:text-white border border-primary-200 dark:border-primary-500/30'
                                         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
                                     }
                   ${isCollapsed ? 'justify-center' : ''}
@@ -166,7 +166,7 @@ const Sidebar = () => {
                 {!isCollapsed && (
                     <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-white/5">
                         <div className="glass-card p-4 text-center">
-                            <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center">
+                            <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-primary-500/15 flex items-center justify-center">
                                 <Brain className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                             </div>
                             <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-1">Luyện tập ngay!</h4>
@@ -174,7 +174,7 @@ const Sidebar = () => {
                             <Link
                                 to="/quiz"
                                 onClick={() => setIsMobileOpen(false)}
-                                className="block w-full py-2 text-sm font-medium bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg hover:from-primary-500 hover:to-secondary-500 transition-all"
+                                className="block w-full py-2 text-sm font-medium bg-primary-600 text-white rounded-lg hover:bg-primary-500 active:scale-95 transition-all"
                             >
                                 Bắt đầu Quiz
                             </Link>

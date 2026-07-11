@@ -175,10 +175,10 @@ const ContentRenderer = ({ content }: ContentRendererProps) => {
                 return (
                     <div key={index} className="note-box mb-4">
                         <div className="flex items-start space-x-3">
-                            <Lightbulb className="w-5 h-5 text-secondary-600 dark:text-secondary-400 flex-shrink-0 mt-0.5" />
+                            <Lightbulb className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
                             <div className="flex-1">
                                 {block.title && (
-                                    <h4 className="text-secondary-700 dark:text-secondary-300 font-semibold mb-2">{block.title}</h4>
+                                    <h4 className="text-amber-700 dark:text-amber-300 font-semibold mb-2">{block.title}</h4>
                                 )}
                                 {noteItems.length > 1 ? (
                                     <div className="space-y-1">

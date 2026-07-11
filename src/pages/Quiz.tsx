@@ -189,7 +189,7 @@ const Quiz = () => {
             <div className="min-h-screen py-12">
                 <div className="max-w-2xl mx-auto px-4">
                     <div className="glass-card p-8 text-center">
-                        <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                        <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-primary-600 flex items-center justify-center">
                             <Trophy className="w-12 h-12 text-white" />
                         </div>
 
@@ -246,7 +246,7 @@ const Quiz = () => {
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-white/10 rounded-full h-2">
                         <div
-                            className="h-2 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 transition-all duration-300"
+                            className="h-2 rounded-full bg-primary-500 transition-all duration-300"
                             style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                         />
                     </div>

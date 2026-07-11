@@ -6,6 +6,7 @@ import ChapterDetail from './pages/ChapterDetail';
 import Formulas from './pages/Formulas';
 import Quiz from './pages/Quiz';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/formulas" element={<Formulas />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>
